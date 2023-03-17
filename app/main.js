@@ -10,6 +10,10 @@ const server = net.createServer((connection) => {
     if (commands[2].toUpperCase() === "PING") {
       connection.write("+PONG\r\n");
     }
+
+    if (commands[2].toUpperCase() === "ECHO") {
+      connection.write(`$${commands[4].length}\r\n${commands[4]}\r\n`);
+    }
   });
 });
 server.listen(6379, "127.0.0.1");
